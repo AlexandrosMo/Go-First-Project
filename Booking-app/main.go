@@ -1,53 +1,59 @@
 // ΣΗΜΕΙΩΣΗ ΓΙΑ ΤΟΥΣ ΤΥΠΟΥΣ ΣΤΗ Go:
-// Στη Go κάθε μεταβλητή πρέπει να έχει ΤΥΠΟ (π.χ. int, string).
-// Αυτό χρησιμοποιείται για τρεις λόγους:
-//
-// 1. ΑΣΦΑΛΕΙΑ: Ο τύπος ορίζει τι τιμές επιτρέπονται. Αν βάλεις λάθος τιμή (π.χ. κείμενο σε int), το πρόγραμμα δεν τρέχει.
-// 2. ΑΠΟΔΟΣΗ: Ο μεταγλωττιστής ξέρει ακριβώς πόσο χώρο μνήμης να κρατήσει και πώς να χειριστεί τη μεταβλητή.
-// 3. ΚΑΘΑΡΟΤΗΤΑ: Ο τύπος δείχνει σε εμάς τι περιέχει η μεταβλητή (π.χ. string = κείμενο, int = αριθμός).
-//
-// Παράδειγμα:
-// var userName string = "Tom"   // string → μπορεί να κρατήσει κείμενο
-// var tickets int = 50          // int → μπορεί να κρατήσει ακέραιο αριθμό
-//
-// Αν βάλουμε λάθος τύπο, η Go μας σταματάει από το να τρέξουμε λάθος πρόγραμμα.
+// Στη Go κάθε μεταβλητή έχει ΤΥΠΟ (π.χ. int, uint, string).
+// - string = κείμενο (π.χ. "Tom", "hello")
+// - int    = ακέραιος αριθμός (θετικός ή αρνητικός)
+// - uint   = ακέραιος χωρίς αρνητικές τιμές (μόνο 0 και πάνω)
+// Οι τύποι χρησιμοποιούνται για ασφάλεια, απόδοση και καθαρότητα κώδικα.
 
-package main // Δηλώνει ότι αυτό το αρχείο ανήκει στο πακέτο "main". Σε εκτελέσιμα προγράμματα Go απαιτείται το πακέτο main.
+package main // Κάθε εκτελέσιμο πρόγραμμα Go ξεκινάει με το πακέτο "main".
 
-import "fmt" // Φορτώνει το πακέτο "fmt" που παρέχει συναρτήσεις εκτύπωσης/εισόδου-εξόδου (π.χ. Printf, Println).
+import "fmt" // Πακέτο "fmt" = εργαλεία για εκτυπώσεις και ανάγνωση από το terminal.
 
-func main() { // Η συνάρτηση main είναι το σημείο εκκίνησης: από εδώ ξεκινά η εκτέλεση.
+func main() { // Η εκτέλεση ξεκινάει πάντα από τη συνάρτηση main.
 
-	var conferenceName string = "Go conference" // Δηλώνει μεταβλητή τύπου string (κείμενο). Τιμή: "Go conference".
-	const conferenceTickets int = 50            // Δηλώνει σταθερά (const) τύπου int (ακέραιος). Δεν αλλάζει. Το σύνολο εισιτηρίων.
-	var remainingTickets int = 50               // Μεταβλητή ακέραιου για τα διαθέσιμα εισιτήρια. Ξεκινά από 50.
+	var conferenceName string = "Go conference" // Δηλώνουμε μεταβλητή τύπου string (κείμενο) με αρχική τιμή "Go conference".
+	const conferenceTickets int = 50            // Δηλώνουμε σταθερά (const) τύπου int. Το σύνολο εισιτηρίων = 50 και δεν αλλάζει ποτέ.
+	var remainingTickets uint = 50              // Δηλώνουμε μεταβλητή τύπου uint (ακέραιος ≥0). Τα διαθέσιμα εισιτήρια ξεκινούν από 50.
 
-	remainingTickets = -1 // Δίνουμε νέα τιμή στη μεταβλητή. Η Go το επιτρέπει γιατί είναι int, αλλά λογικά είναι λάθος (αρνητικά εισιτήρια).
-
-	fmt.Printf("conferenceTickets is %T, remainingTickets is %T, conferenceName is %T \n",
-		conferenceTickets, remainingTickets, conferenceName)
-	// %T εκτυπώνει τον ΤΥΠΟ κάθε τιμής. Εδώ: int, int, string.
+	fmt.Printf("conferenceTickets is %T,remainingTickets is %T,conferenceName is %T \n", conferenceTickets, remainingTickets, conferenceName)
+	// Εκτυπώνουμε τους ΤΥΠΟΥΣ (όχι τις τιμές). Το %T δείχνει τον τύπο: int, uint, string.
 
 	fmt.Printf("welcome to %v booking application.\n", conferenceName)
-	// %v εκτυπώνει την ΤΙΜΗ. Εδώ θα εμφανιστεί "Go conference".
+	// %v = εκτύπωσε την ΤΙΜΗ. Εδώ βάζει το "Go conference" μέσα στο κείμενο.
 
-	fmt.Printf("We have total of %v tickets and %v are still available.\n",
-		conferenceTickets, remainingTickets)
-	// Εκτυπώνει το σύνολο εισιτηρίων (50) και τα διαθέσιμα (-1).
+	fmt.Printf("We have total of %v tickets and %v  are still available.\n", conferenceTickets, remainingTickets)
+	// Εκτυπώνουμε το σύνολο (50) και τα διαθέσιμα (50 αρχικά).
 
 	fmt.Println("Get your tickets here to attend")
-	// Εκτυπώνει κείμενο και αλλάζει γραμμή αυτόματα.
+	// Println = απλή εκτύπωση με αλλαγή γραμμής.
 
-	var userName string // Δηλώνουμε string (κείμενο) χωρίς τιμή. Προεπιλεγμένη τιμή = "" (κενό).
-	var userTickets int // Δηλώνουμε int (ακέραιο) χωρίς τιμή. Προεπιλεγμένη τιμή = 0.
+	// Δηλώνουμε μεταβλητές για τα στοιχεία του χρήστη, χωρίς αρχικές τιμές.
+	var firstName string
+	var lastName string
+	var email string
+	var userTickets uint
 
-	// ask user for their name
-	// Σχόλιο προγραμματιστή: δεν παίρνουμε πραγματικά είσοδο από τον χρήστη,
-	// απλά βάζουμε χειροκίνητα τιμές ως παράδειγμα.
+	// Ζητάμε είσοδο από τον χρήστη. Χρησιμοποιούμε fmt.Scan για να διαβάσουμε από το terminal.
 
-	userName = "Tom" // Αποθηκεύουμε "Tom" στη μεταβλητή userName.
-	userTickets = 2  // Αποθηκεύουμε 2 στη μεταβλητή userTickets.
+	fmt.Println("Enter your name:") // Εμφανίζουμε μήνυμα.
+	fmt.Scan(&firstName)            // &firstName = πέρασε τη "διεύθυνση μνήμης" ώστε η τιμή να αποθηκευτεί στη μεταβλητή.
 
-	fmt.Printf("User %v booked %v tickets.\n", userName, userTickets)
-	// Εκτυπώνει: "User Tom booked 2 tickets."
+	fmt.Println("Enter your last name:")
+	fmt.Scan(&lastName) // Ο χρήστης γράφει το επίθετό του.
+
+	fmt.Println("Enter your email:")
+	fmt.Scan(&email) // Ο χρήστης γράφει το email του.
+
+	fmt.Println("Enter number of tickets:")
+	fmt.Scan(&userTickets) // Ο χρήστης γράφει πόσα εισιτήρια θέλει.
+
+	remainingTickets = remainingTickets - userTickets
+	// Μειώνουμε τα διαθέσιμα εισιτήρια ανάλογα με την κράτηση.
+
+	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v.\n",
+		firstName, lastName, userTickets, email)
+	// Εκτυπώνουμε προσωπικό μήνυμα επιβεβαίωσης.
+
+	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferenceName)
+	// Ενημερώνουμε πόσα εισιτήρια απομένουν.
 }
