@@ -18,9 +18,15 @@ import "fmt" // Φορτώνει το πακέτο "fmt" που παρέχει �
 
 func main() { // Η συνάρτηση main είναι το σημείο εκκίνησης: από εδώ ξεκινά η εκτέλεση.
 
+<<<<<<< HEAD
 	conferenceName := "Go conference" // Δηλώνει μεταβλητή τύπου string (κείμενο). Τιμή: "Go conference".
 	const conferenceTickets int = 50  // Δηλώνει σταθερά (const) τύπου int (ακέραιος). Δεν αλλάζει. Το σύνολο εισιτηρίων.
 	var remainingTickets int = 50     // Μεταβλητή ακέραιου για τα διαθέσιμα εισιτήρια. Ξεκινά από 50.
+=======
+	var conferenceName string = "Go conference" // Δηλώνει μεταβλητή τύπου string (κείμενο). Τιμή: "Go conference".
+	const conferenceTickets int = 50            // Δηλώνει σταθερά (const) τύπου int (ακέραιος). Δεν αλλάζει. Το σύνολο εισιτηρίων.
+	var remainingTickets int = 50               // Μεταβλητή ακέραιου για τα διαθέσιμα εισιτήρια. Ξεκινά από 50.
+>>>>>>> d941aec2f7c9ada720e9e0d30561a5d2b7119a7a
 
 	remainingTickets = -1 // Δίνουμε νέα τιμή στη μεταβλητή. Η Go το επιτρέπει γιατί είναι int, αλλά λογικά είναι λάθος (αρνητικά εισιτήρια).
 
