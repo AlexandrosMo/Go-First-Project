@@ -41,8 +41,7 @@ func main() {
 
 		if userTickets <= 0 {
 			fmt.Println("Please enter a valid number of tickets")
-		}
-		if userTickets > 0 {
+		} else {
 
 			fmt.Printf("the whole Slice: %v\n", bookings)
 			fmt.Printf("the first value: %v\n", bookings[0])
